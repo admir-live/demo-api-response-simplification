@@ -1,3 +1,4 @@
+using Demo.SimplifyingApi.Data.Convertors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,12 @@ namespace Demo.SimplifyingApi.Orders.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(configure: options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(item: new UserNameJsonConverter());
+                    options.JsonSerializerOptions.Converters.Add(item: new BudApiMetadataConverter());
+                });
 
             services.AddDbContext<DemoContext>(optionsAction: optionsBuilder => optionsBuilder.UseSqlServer(connectionString: Configuration.GetConnectionString(name: "Demo")));
         }

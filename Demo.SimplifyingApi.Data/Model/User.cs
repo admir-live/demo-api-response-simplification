@@ -18,6 +18,7 @@ namespace Demo.SimplifyingApi.Data.Model
         public string LastName { get; set; }
 
         public UserName UserName { get; set; }
+
         public BudApiMetadata BudApiMetadata { get; set; }
 
         public override string ToString()

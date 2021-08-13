@@ -60,6 +60,11 @@ namespace Demo.SimplifyingApi.Data.Model
             return Value;
         }
 
+        public string ToJson()
+        {
+            return $"My username is: {Value}.";
+        }
+
         public static implicit operator string(UserName value)
         {
             return value.ToString();

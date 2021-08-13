@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Demo.SimplifyingApi.SharedKernel.Domain;
 
 namespace Demo.SimplifyingApi.Data.Model
@@ -38,6 +39,11 @@ namespace Demo.SimplifyingApi.Data.Model
             var segments = rawValue.Split(separator: ":");
 
             return Parse(budCustomerId: segments[0], budCustomerSecret: segments[1]);
+        }
+
+        public string ToJson()
+        {
+            return $"{string.Join(separator: "", values: Enumerable.Repeat(element: "*", count: 20))}{BudCustomerSecret.Substring(startIndex: 0, length: 5)}";
         }
 
         public override string ToString()
